@@ -3,226 +3,234 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Swarnamythili R · Data Engineer</title>
+<title>Swarnamythili R · Senior Data Engineer</title>
+<meta name="description" content="Senior Data Engineer building Azure, Databricks and Microsoft Fabric data pipelines.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#EDF1F5; --surface:#FFFFFF; --ink:#11233B; --muted:#51647C; --line:#C9D3DE; --accent:#3B4FE0; --accent-ink:#FFFFFF; --soft:#DDE4F7;
-  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#0E1726; --surface:#16233A; --ink:#E6EDF7; --muted:#9FB0C7; --line:#2A3A55; --accent:#8C9BFF; --accent-ink:#0E1726; --soft:#222F55;}
-}
-:root[data-theme="dark"]{--bg:#0E1726; --surface:#16233A; --ink:#E6EDF7; --muted:#9FB0C7; --line:#2A3A55; --accent:#8C9BFF; --accent-ink:#0E1726; --soft:#222F55;}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+:root{--bg:#EDF1F5;--surface:#fff;--ink:#11233B;--muted:#51647C;--line:#C9D3DE;--accent:#3B4FE0;--on:#fff;--soft:#DDE4F7;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1726;--surface:#16233A;--ink:#E6EDF7;--muted:#9FB0C7;--line:#2A3A55;--accent:#8C9BFF;--on:#0E1726;--soft:#222F55}}
+:root[data-theme="dark"]{--bg:#0E1726;--surface:#16233A;--ink:#E6EDF7;--muted:#9FB0C7;--line:#2A3A55;--accent:#8C9BFF;--on:#0E1726;--soft:#222F55}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
 h1,h2,h3{font-family:"Bricolage Grotesque","IBM Plex Sans",system-ui,sans-serif;line-height:1.1;margin:0;letter-spacing:-.02em}
 a{color:var(--accent)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
-.wrap{max-width:960px;margin:0 auto;padding:0 24px}
-nav{display:flex;gap:22px;justify-content:flex-end;padding:22px 0;font-size:15px;flex-wrap:wrap}
-nav a{color:var(--muted);text-decoration:none}
-nav a:hover{color:var(--ink)}
-.hero{padding:40px 0 72px}
-.hero h1{font-size:clamp(40px,7vw,76px);font-weight:700;max-width:14ch}
-.hero p.lead{font-size:clamp(18px,2.2vw,22px);max-width:56ch;color:var(--muted);margin:24px 0 0}
-.hero .name{margin-top:28px;font-weight:500}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;margin-right:auto}
+.bar nav{display:flex;gap:4px}
+.bar nav a{color:var(--muted);text-decoration:none;font-size:15px;padding:6px 10px;border-radius:6px}
+.bar nav a:hover{color:var(--ink)}
+.bar nav a.on{color:var(--ink);background:var(--soft)}
+.icon{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;height:36px;padding:0 12px;font:inherit;font-size:14px;cursor:pointer}
+.icon:hover{border-color:var(--accent)}
+.hero{padding:72px 0 56px}
+.hero h1{font-size:clamp(38px,6.5vw,68px);font-weight:700;max-width:15ch}
+.lead{font-size:clamp(18px,2.2vw,21px);max-width:58ch;color:var(--muted);margin:22px 0 0}
 .cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.btn{display:inline-block;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:500;border:1.5px solid var(--accent)}
-.btn.primary{background:var(--accent);color:var(--accent-ink)}
-.pipe{margin-top:56px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 12px 8px}
-.pipe svg{width:100%;height:auto;display:block}
-.pipe text{font-family:"IBM Plex Sans",system-ui,sans-serif;fill:var(--ink)}
-.pipe .sub{fill:var(--muted);font-size:12px}
-.pipe .node{fill:var(--bg);stroke:var(--line);stroke-width:1.5}
-.pipe .node.hot{fill:var(--soft);stroke:var(--accent)}
-.pipe .rail{stroke:var(--line);stroke-width:2;stroke-dasharray:4 6}
-.pipe .dot{fill:var(--accent)}
-.pipe .cap{font-size:13px;fill:var(--muted)}
-section{padding:64px 0;border-top:1px solid var(--line)}
-section>.wrap>h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px}
-.intro{max-width:62ch;color:var(--muted);margin:0 0 36px}
-.work{display:grid;gap:0}
-.row{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:12px 32px;padding:26px 0;border-top:1px solid var(--line)}
-.row:first-child{border-top:0}
-.row h3{font-size:22px}
-.row .tag{color:var(--muted);font-size:14px;margin-top:6px}
-.row p{margin:0;max-width:62ch}
-.row p+p{margin-top:10px;color:var(--muted)}
-.big{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:30px;color:var(--accent);letter-spacing:-.02em}
-.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px 40px}
-.stack h3{font-size:18px;margin-bottom:10px}
+.btn{display:inline-block;padding:12px 20px;border-radius:8px;text-decoration:none;font:500 16px "IBM Plex Sans",sans-serif;border:1.5px solid var(--accent);color:var(--accent);background:none;cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--on)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:44px}
+.stats div{padding:18px 20px;border-left:1px solid var(--line)}
+.stats div:first-child{border-left:0}
+.stats b{display:block;font:700 32px "Bricolage Grotesque",sans-serif;color:var(--accent);letter-spacing:-.02em}
+.stats span{font-size:14px;color:var(--muted)}
+section{padding:68px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,4vw,38px);margin-bottom:10px}
+.intro{max-width:62ch;color:var(--muted);margin:0 0 28px}
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.stage{flex:1 1 150px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink);font:inherit}
+.stage b{display:block;font:700 18px "Bricolage Grotesque",sans-serif}
+.stage span{font-size:13px;color:var(--muted)}
+.stage:hover{border-color:var(--accent)}
+.stage[aria-pressed="true"]{border-color:var(--accent);background:var(--soft);box-shadow:inset 0 -3px 0 var(--accent)}
+.link{flex:0 0 28px;align-self:center;height:2px;background:repeating-linear-gradient(90deg,var(--accent) 0 6px,transparent 6px 12px);background-size:12px 2px;animation:run 1s linear infinite}
+@keyframes run{to{background-position:12px 0}}
+.panel{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+.panel h3{font-size:22px;margin-bottom:6px}
+.panel p{margin:0 0 12px;max-width:64ch}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-.chips li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:14px}
+.chips li{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:14px}
+.filters,.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.f{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 16px;font:inherit;font-size:15px;cursor:pointer}
+.f:hover{border-color:var(--accent)}
+.f[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on)}
+details.job{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:12px}
+details.job summary{cursor:pointer;list-style:none;padding:18px 22px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+details.job summary::-webkit-details-marker{display:none}
+details.job summary::after{content:"+";font-size:24px;color:var(--accent);line-height:1}
+details.job[open] summary::after{content:"\2212"}
+summary h3{font-size:20px}
+summary small{display:block;color:var(--muted);font:400 14px "IBM Plex Sans",sans-serif;margin-top:4px}
+.body{padding:0 22px 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.body h4{margin:0 0 4px;font:700 15px "Bricolage Grotesque",sans-serif}
+.body p{margin:0;font-size:15.5px;color:var(--muted)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .plain{margin:0;padding:0;list-style:none}
 .plain li{padding:9px 0;border-top:1px solid var(--line)}
 .plain li:first-child{border-top:0}
 .meta{color:var(--muted);font-size:15px}
-.contact a.mail{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(22px,4vw,36px);font-weight:700;word-break:break-all;text-decoration:none}
-.contact ul{list-style:none;padding:0;margin:24px 0 0;display:flex;gap:24px;flex-wrap:wrap}
-footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
-@media (max-width:720px){.row{grid-template-columns:1fr}.two{grid-template-columns:1fr}nav{justify-content:flex-start}}
-@media (prefers-reduced-motion:reduce){.dot{display:none}html{scroll-behavior:auto}}
+.mail{font:700 clamp(22px,4vw,34px) "Bricolage Grotesque",sans-serif;word-break:break-all;text-decoration:none}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:22px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:8px;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}
+#toast.show{opacity:1}
+footer{padding:28px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:760px){.bar nav{display:none}.stats{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}.body,.two{grid-template-columns:1fr}.link{display:none}.flow{gap:8px}}
+@media (prefers-reduced-motion:reduce){.link{animation:none}html{scroll-behavior:auto}#toast{transition:none}}
 </style>
 </head>
 <body>
-<header class="wrap">
-  <nav aria-label="Sections">
-    <a href="#work">Work</a><a href="#stack">Stack</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a>
-  </nav>
-  <div class="hero">
-    <h1>I build the pipelines that make data usable.</h1>
-    <p class="lead">DataEngineer with 4 years of experience building and supporting scalable cloud data pipelines on Microsoft Azure. Hands-on experience across Microsoft Fabric,
-Azure Databricks, PySpark, Azure Data Factory (ADF), ADLS, SQL, Cosmos DB and Azure Service Bus. Experienced in end-to-end ETL/ELT, multi-format data
-processing, pipeline optimization, production deployments and support. Delivered performance improvements for 107M+ record workloads using ADF
-parallelism, implemented source hard-delete capture for ADLS, and rapidly delivered Microsoft Fabric Mirroring and OneLake Shortcuts solutions. Proposed an
-Agile project-tracking solution integrating Azure DevOps with Databricks and Unity Catalog, with a Genie agent for self-service task information</p>
-    <p class="name">Swarnamythili R · Tata Consultancy Services</p>
-    <div class="cta">
-      <a class="btn primary" href="#contact">Get in touch</a>
-      <a class="btn" href="#work">See my work</a>
-    </div>
+<div class="bar"><div class="wrap">
+  <a class="brand" href="#top">Swarnamythili R</a>
+  <nav aria-label="Sections"><a href="#how">How I work</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
+  <button class="icon" id="theme" type="button" aria-label="Switch colour theme">Theme</button>
+</div></div>
 
-    <div class="pipe" role="img" aria-label="Diagram of a data pipeline: sources flow into ingestion with Data Factory, transformation with Databricks and PySpark, and delivery through Fabric, Cosmos DB and Service Bus.">
-      <svg viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg">
-        <line class="rail" x1="130" y1="80" x2="770" y2="80"/>
-        <g>
-          <rect class="node" x="20" y="45" width="150" height="70" rx="12"/>
-          <text x="95" y="76" text-anchor="middle" font-size="16" font-weight="500">Sources</text>
-          <text class="sub" x="95" y="97" text-anchor="middle">JSON · CSV · XML</text>
-          <rect class="node" x="250" y="45" width="150" height="70" rx="12"/>
-          <text x="325" y="76" text-anchor="middle" font-size="16" font-weight="500">Ingest</text>
-          <text class="sub" x="325" y="97" text-anchor="middle">ADF · ADLS</text>
-          <rect class="node hot" x="480" y="45" width="150" height="70" rx="12"/>
-          <text x="555" y="76" text-anchor="middle" font-size="16" font-weight="500">Transform</text>
-          <text class="sub" x="555" y="97" text-anchor="middle">Databricks · PySpark</text>
-          <rect class="node" x="710" y="45" width="170" height="70" rx="12"/>
-          <text x="795" y="76" text-anchor="middle" font-size="16" font-weight="500">Deliver</text>
-          <text class="sub" x="795" y="97" text-anchor="middle">Fabric · Cosmos DB · Service Bus</text>
-        </g>
-        <circle class="dot" r="5" cy="80"><animate attributeName="cx" values="170;250" dur="4s" repeatCount="indefinite" begin="0s"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.25;.26;1" dur="4s" repeatCount="indefinite"/></circle>
-        <circle class="dot" r="5" cy="80"><animate attributeName="cx" values="400;480" dur="4s" repeatCount="indefinite" begin="1s"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.25;.26;1" dur="4s" repeatCount="indefinite" begin="1s"/></circle>
-        <circle class="dot" r="5" cy="80"><animate attributeName="cx" values="630;710" dur="4s" repeatCount="indefinite" begin="2s"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.25;.26;1" dur="4s" repeatCount="indefinite" begin="2s"/></circle>
-        <text class="cap" x="450" y="160" text-anchor="middle">One of my pipelines moves 107M+ records. The path above is how most of my work flows.</text>
-      </svg>
-    </div>
+<main id="top">
+<div class="wrap hero">
+  <h1>I build the pipelines that make data usable.</h1>
+  <p class="lead">Senior Data Engineer at Tata Consultancy Services with 4+ years of experience on Microsoft Azure. I ingest, transform and deliver data with Databricks, Data Factory and Fabric, and support it in production.</p>
+  <div class="cta"><a class="btn primary" href="#work">View my work</a><a class="btn" href="#contact">Contact me</a></div>
+  <div class="stats" aria-label="Highlights">
+    <div><b data-n="107" data-s="M+">107M+</b><span>records in an optimised ADF pipeline</span></div>
+    <div><b data-n="4" data-s="+ yrs">4+ yrs</b><span>building Azure data pipelines</span></div>
+    <div><b data-n="1" data-s=" week">1 week</b><span>to deliver a Fabric integration</span></div>
+    <div><b data-n="8" data-s="">8</b><span>Microsoft, Databricks and other certifications</span></div>
   </div>
-</header>
+</div>
 
-<main>
-<section id="work">
-  <div class="wrap">
-    <h2>Selected work</h2>
-    <p class="intro">Four things I’ve delivered or proposed at TCS, in the order I’d tell them in an interview.</p>
-    <div class="work">
-      <article class="row">
-        <div><div class="big">107M+</div><h3>Faster loads on a very large table</h3><div class="tag">Azure Data Factory</div></div>
-        <div>
-          <p>A pipeline processing more than 107 million records had a bottleneck of over three hours.</p>
-          <p>I introduced parallel processing and partition and range-based workload distribution so the load no longer ran as one long serial job.</p>
-        </div>
-      </article>
-      <article class="row">
-        <div><h3>Catching hard deletes</h3><div class="tag">ADLS · Source data</div></div>
-        <div>
-          <p>The upstream source did not send delete timestamps, so removed rows silently stayed in the lake.</p>
-          <p>I implemented an ADLS purge strategy that identifies and captures those hard deletes, keeping downstream data consistent with the source.</p>
-        </div>
-      </article>
-      <article class="row">
-        <div><div class="big">1 week</div><h3>Microsoft Fabric, end to end</h3><div class="tag">Mirroring · OneLake Shortcuts</div></div>
-        <div>
-          <p>I learned Fabric on the job and delivered a complete integration using Mirroring and OneLake Shortcuts within one week.</p>
-        </div>
-      </article>
-      <article class="row">
-        <div><h3>Ask your sprint board a question</h3><div class="tag">Proposal · Databricks · Unity Catalog</div></div>
-        <div>
-          <p>I proposed an Agile project-tracking solution. Databricks pulls Azure DevOps work items through a PAT-based integration, stores the curated data in Unity Catalog tables, and a Genie agent answers task questions in plain language.</p>
-        </div>
-      </article>
-    </div>
+<section id="how"><div class="wrap">
+  <h2>How I work</h2>
+  <p class="intro">Select a stage to see the tools I use there and what I have done with them.</p>
+  <div class="flow" role="group" aria-label="Pipeline stages">
+    <button class="stage" type="button" data-k="sources" aria-pressed="false"><b>Sources</b><span>Multi-format data</span></button><i class="link"></i>
+    <button class="stage" type="button" data-k="ingest" aria-pressed="false"><b>Ingest</b><span>ADF · Databricks · Fabric</span></button><i class="link"></i>
+    <button class="stage" type="button" data-k="transform" aria-pressed="true"><b>Transform</b><span>Databricks · PySpark</span></button><i class="link"></i>
+    <button class="stage" type="button" data-k="deliver" aria-pressed="false"><b>Deliver</b><span>ADLS · Cosmos DB · Service Bus</span></button>
   </div>
-</section>
+  <div class="panel" id="panel" aria-live="polite"></div>
+</div></section>
 
-<section id="stack">
-  <div class="wrap">
-    <h2>What I work with</h2>
-    <p class="intro">Most of my time goes to batch ETL and ELT on Azure, with Delta Lake and the lakehouse pattern.</p>
-    <div class="stack">
-      <div><h3>Platforms</h3><ul class="chips"><li>Microsoft Fabric</li><li>Azure Databricks</li><li>Azure Data Factory</li><li>ADLS</li><li>Cosmos DB</li><li>Service Bus</li></ul></div>
-      <div><h3>Engineering</h3><ul class="chips"><li>ETL / ELT</li><li>Data ingestion</li><li>Batch processing</li><li>Delta Lake</li><li>Lakehouse</li><li>Pipeline automation</li></ul></div>
-      <div><h3>Languages</h3><ul class="chips"><li>Python</li><li>PySpark</li><li>SQL</li><li>T-SQL</li></ul></div>
-      <div><h3>Formats</h3><ul class="chips"><li>JSON</li><li>CSV</li><li>Parquet</li><li>XML</li><li>Delta</li></ul></div>
-      <div><h3>Fabric and AI</h3><ul class="chips"><li>Mirroring</li><li>OneLake Shortcuts</li><li>Unity Catalog</li><li>Genie agent</li><li>Azure DevOps integration</li></ul></div>
-      <div><h3>Delivery</h3><ul class="chips"><li>CI/CD</li><li>Production deployments</li><li>Issue resolution</li><li>Workflow automation</li></ul></div>
+<section id="work"><div class="wrap">
+  <h2>Selected work</h2>
+  <p class="intro">Open a project to read the challenge, my approach and the outcome.</p>
+  <div class="filters" role="group" aria-label="Filter projects">
+    <button class="f" type="button" data-f="all" aria-pressed="true">All</button>
+    <button class="f" type="button" data-f="perf" aria-pressed="false">Performance</button>
+    <button class="f" type="button" data-f="rel" aria-pressed="false">Reliability</button>
+    <button class="f" type="button" data-f="plat" aria-pressed="false">Platform</button>
+    <button class="f" type="button" data-f="ai" aria-pressed="false">AI</button>
+  </div>
+  <details class="job" data-c="perf" open><summary><div><h3>Faster loads for a 107M+ record pipeline</h3><small>Azure Data Factory</small></div></summary>
+    <div class="body"><div><h4>Challenge</h4><p>A pipeline processing more than 107 million records had a load bottleneck of over three hours.</p></div><div><h4>Approach</h4><p>Introduced parallel processing and partition and range-based workload distribution.</p></div><div><h4>Outcome</h4><p>Reduced the 3+ hour bottleneck in the load.</p></div></div></details>
+  <details class="job" data-c="rel"><summary><div><h3>Capturing hard deletes from upstream data</h3><small>ADLS · Source data</small></div></summary>
+    <div class="body"><div><h4>Challenge</h4><p>The upstream source did not provide delete timestamps, so hard deletes were invisible downstream.</p></div><div><h4>Approach</h4><p>Implemented an ADLS purge strategy to identify and capture them.</p></div><div><h4>Outcome</h4><p>Deleted source records can be identified and handled in the lake.</p></div></div></details>
+  <details class="job" data-c="plat"><summary><div><h3>Microsoft Fabric integration in one week</h3><small>Mirroring · OneLake Shortcuts</small></div></summary>
+    <div class="body"><div><h4>Challenge</h4><p>Deliver an end-to-end Fabric integration on a platform that was new to me.</p></div><div><h4>Approach</h4><p>Learned the platform quickly and built it with Mirroring and OneLake Shortcuts.</p></div><div><h4>Outcome</h4><p>Complete build delivered within one week.</p></div></div></details>
+  <details class="job" data-c="ai"><summary><div><h3>Natural-language answers from Azure DevOps</h3><small>Proposal · Databricks · Unity Catalog · Genie</small></div></summary>
+    <div class="body"><div><h4>Challenge</h4><p>Task and work-item information sat in Azure DevOps and was hard to query quickly.</p></div><div><h4>Approach</h4><p>Databricks retrieves work items through a PAT-based integration and stores curated data in Unity Catalog tables.</p></div><div><h4>Outcome</h4><p>Proposed: a Genie agent answers task questions in natural language.</p></div></div></details>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2>Skills</h2>
+  <p class="intro">Mostly batch ETL and ELT on Azure, with Delta Lake and the lakehouse pattern.</p>
+  <div class="tabs" role="group" aria-label="Skill groups" id="tabs"></div>
+  <ul class="chips" id="skillList" aria-live="polite"></ul>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <h2>Experience and credentials</h2>
+  <p class="intro"><strong>Senior Data Engineer, Tata Consultancy Services</strong> · 2022 to present</p>
+  <div class="two">
+    <div>
+      <ul class="plain">
+        <li>Build and support end-to-end Azure pipelines with PySpark, SQL, Databricks, ADF, ADLS, Cosmos DB, Service Bus and Fabric.</li>
+        <li>Develop ingestion and transformation workflows for JSON, CSV, Parquet, XML and Delta data.</li>
+        <li>Support production deployments and post-release issues, and troubleshoot pipeline failures.</li>
+        <li>Present solutions to client stakeholders, who recognised the delivery quality.</li>
+      </ul>
+      <p class="meta" style="margin-top:20px"><strong>Project:</strong> Enterprise Azure ETL and data integration for a retail client, across Databricks, ADF, ADLS, Cosmos DB, Service Bus and Fabric.</p>
+    </div>
+    <div>
+      <h3 style="font-size:19px;margin-bottom:8px">Certifications</h3>
+      <ul class="plain">
+        <li>Azure Data Engineer · Fabric Analytics Engineer</li>
+        <li>Databricks Certified Data Engineer Associate</li>
+        <li>Azure Developer · Azure Fundamentals · Azure Data Fundamentals</li>
+        <li>GitHub Copilot · HackerRank Python and Problem Solving</li>
+      </ul>
+      <h3 style="font-size:19px;margin:22px 0 8px">Recognition</h3>
+      <ul class="plain">
+        <li>Runner-up, IBM Hack Challenge 2021</li>
+        <li>Master Issue Resolver and outstanding performance award from the client at TCS</li>
+        <li>TCS Elevate Wings 1 Digital Milestone, with distinction in PL/SQL</li>
+      </ul>
+      <p class="meta" style="margin-top:20px"><strong>Education:</strong> B.E. Computer Science Engineering, Mount Zion College of Engineering and Technology · CGPA 8.5/10</p>
     </div>
   </div>
-</section>
+</div></section>
 
-<section id="experience">
-  <div class="wrap">
-    <h2>Experience</h2>
-    <p class="intro"><strong>Senior Data Engineer, Tata Consultancy Services</strong> · 2022 to present</p>
-    <ul class="plain">
-      <li>Build and support end-to-end Azure data pipelines with PySpark, SQL, Databricks, ADF, ADLS, Cosmos DB, Service Bus and Fabric.</li>
-      <li>Develop ingestion and transformation workflows for JSON, CSV, Parquet, XML and Delta data.</li>
-      <li>Support production deployments and post-release issues, troubleshoot pipeline failures and keep releases stable.</li>
-      <li>Present technical solutions to client stakeholders, who recognised the delivery quality and issue resolution.</li>
-    </ul>
-    <p class="meta" style="margin-top:28px"><strong>Project:</strong> Enterprise Azure ETL and data integration, a retail project covering ingestion, transformation and downstream delivery across Databricks, ADF, ADLS, Cosmos DB, Service Bus and Fabric.</p>
+<section id="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <p class="intro">Open to conversations about data engineering roles on Azure, Databricks and Fabric.</p>
+  <a class="mail" href="mailto:swarnamythili2001@gmail.com">swarnamythili2001@gmail.com</a>
+  <div class="row">
+    <button class="btn" type="button" id="copy">Copy email</button>
+    <a class="btn" href="https://linkedin.com/in/swarnamythili-ramakrishnan-1979a3202">LinkedIn</a>
+    <a class="btn" href="https://github.com/swarnamythiliR">GitHub</a>
   </div>
-</section>
-
-<section id="credentials">
-  <div class="wrap">
-    <h2>Credentials</h2>
-    <p class="intro">&nbsp;</p>
-    <div class="two">
-      <div>
-        <h3 style="margin-bottom:12px">Certifications</h3>
-        <ul class="plain">
-          <li>Microsoft Certified: Azure Data Engineer</li>
-          <li>Microsoft Certified: Fabric Analytics Engineer</li>
-          <li>Databricks Certified Data Engineer Associate</li>
-          <li>Microsoft Certified: Azure Developer</li>
-          <li>Microsoft Certified: Azure Fundamentals</li>
-          <li>Microsoft Certified: Azure Data Fundamentals</li>
-          <li>GitHub Copilot Certification</li>
-          <li>HackerRank: Python, Problem Solving</li>
-        </ul>
-      </div>
-      <div>
-        <h3 style="margin-bottom:12px">Recognition</h3>
-        <ul class="plain">
-          <li>Runner-up, IBM Hack Challenge 2021 (SmartInternz and IBM)</li>
-          <li>Master Issue Resolver and outstanding performance award from the client at TCS</li>
-          <li>TCS Elevate Wings 1 Digital Milestone, with distinction in PL/SQL and Unit Elective</li>
-          <li>Participated in TCS AI Spark Hackathon with an AI solution idea</li>
-        </ul>
-        <h3 style="margin:28px 0 12px">Education</h3>
-        <p style="margin:0">B.E. Computer Science Engineering<br><span class="meta">Mount Zion College of Engineering and Technology · CGPA 8.5/10</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <div class="wrap">
-    <h2>Let’s talk</h2>
-    <p class="intro">Open to conversations about data engineering roles on Azure, Databricks and Fabric.</p>
-    <a class="mail" href="mailto:swarnamythili2001@gmail.com">swarnamythili2001@gmail.com</a>
-    <ul>
-      <li><a href="https://linkedin.com/in/swarnamythili-ramakrishnan-1979a3202">LinkedIn</a></li>
-      <li><a href="https://github.com/swarnamythiliR">GitHub</a></li>
-    </ul>
-  </div>
-</section>
+</div></section>
 </main>
 <footer><div class="wrap">© Swarnamythili R</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var root=document.documentElement,reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+try{var t=localStorage.getItem("theme");if(t)root.dataset.theme=t}catch(e){}
+function dark(){return root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches}
+function label(){$("#theme").textContent=dark()?"Light":"Dark"}
+$("#theme").onclick=function(){var n=dark()?"light":"dark";root.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}label()};
+label();
+
+var ST={
+sources:{t:"Sources",p:"Data arrives in many shapes from upstream systems, including sources that never signal when a record is deleted.",c:["JSON","CSV","Parquet","XML","Delta"]},
+ingest:{t:"Ingest",p:"Bringing data in with Azure Data Factory, Databricks and Microsoft Fabric (Mirroring and OneLake Shortcuts). This is where I cut a 3+ hour bottleneck on a 107M+ record ADF pipeline using parallel, partition and range-based loads.",c:["Azure Data Factory","Databricks","Microsoft Fabric","Mirroring","OneLake Shortcuts","Batch processing"]},
+transform:{t:"Transform",p:"Transformation workflows in Databricks with PySpark and SQL, producing curated Delta data that is governed through Unity Catalog.",c:["Databricks","PySpark","SQL","Delta Lake","Unity Catalog"]},
+deliver:{t:"Deliver",p:"Delivering curated data downstream to ADLS, Cosmos DB and Service Bus, backed by CI/CD, production deployments and ongoing support.",c:["ADLS","Cosmos DB","Service Bus","CI/CD","Production support"]}};
+function show(k){var s=ST[k];$("#panel").innerHTML="<h3>"+s.t+"</h3><p>"+s.p+"</p><ul class=\"chips\">"+s.c.map(function(c){return"<li>"+c+"</li>"}).join("")+"</ul>";
+$$(".stage").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.k===k)})}
+$$(".stage").forEach(function(b){b.onclick=function(){show(b.dataset.k)}});show("transform");
+
+$$(".f").forEach(function(b){b.onclick=function(){$$(".f").forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+$$(".job").forEach(function(j){j.hidden=!(b.dataset.f==="all"||j.dataset.c===b.dataset.f)})}});
+
+var SK={"Platforms":["Microsoft Fabric","Azure Databricks","Azure Data Factory","ADLS","Cosmos DB","Service Bus"],
+"Engineering":["ETL / ELT","Data ingestion","Data transformation","Batch processing","Delta Lake","Lakehouse","Pipeline automation","Production support"],
+"Languages":["Python","PySpark","SQL","T-SQL"],"Formats":["JSON","CSV","Parquet","XML","Delta"],
+"Fabric and AI":["Mirroring","OneLake Shortcuts","Unity Catalog","Genie agent","Azure DevOps integration"],
+"Delivery":["CI/CD","Production deployments","Workflow automation","Issue resolution","PAT-based integration"]};
+function tab(g){$("#skillList").innerHTML=SK[g].map(function(s){return"<li>"+s+"</li>"}).join("");
+$$("#tabs .f").forEach(function(b){b.setAttribute("aria-pressed",b.textContent===g)})}
+Object.keys(SK).forEach(function(g){var b=document.createElement("button");b.className="f";b.type="button";b.textContent=g;b.onclick=function(){tab(g)};$("#tabs").appendChild(b)});
+tab("Platforms");
+
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){$$("nav a").forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)})}})},{rootMargin:"-45% 0px -50% 0px"});
+$$("section").forEach(function(s){io.observe(s)});
+
+var done=false,co=new IntersectionObserver(function(es){if(done||!es[0].isIntersecting)return;done=true;if(reduce)return;
+$$(".stats b").forEach(function(b){var n=+b.dataset.n,s=b.dataset.s,t0=null;function f(t){t0=t0||t;var p=Math.min((t-t0)/900,1);b.textContent=Math.round(n*p)+s;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)})});
+co.observe($(".stats"));
+
+function toast(m){var t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200)}
+$("#copy").onclick=function(){var m="swarnamythili2001@gmail.com";
+try{navigator.clipboard.writeText(m).then(function(){toast("Email copied")},function(){toast(m)})}catch(e){toast(m)}};
+</script>
 </body>
 </html>
